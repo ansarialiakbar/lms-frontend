@@ -22,12 +22,14 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'simple-import-sort': simpleImportSort,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
+      'simple-import-sort/imports': 'error',
       'react/jsx-no-target-blank': 'off',
       'react-refresh/only-export-components': [
         'warn',
