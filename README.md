@@ -51,3 +51,30 @@
 ````````````````
 npm install @reduxjs/toolkit react-redux react-router-dom react-icons react-chartjs-2 chart.js daisyui axios react-hot-toast @tailwindcss/line-clamp
 ````````````
+
+## configure auto import sort eslit
+
+1. Install simple import sort
+````
+   npm i eslint-plugin-simple-import-sort
+````
+2. Add rule in `.eslin.cjs`
+````
+'simple-import-sort/imports': 'error',
+````
+3. Add simple-import-sort-piugin in `.eslin.cjs`
+````
+plugins: {
+      ......,
+      'simple-import-sort': simpleImportSort,
+    },
+````
+
+4. To enable auto import sort in file save in vscode
+    - open `setting.json`
+    - add the following config
+````
+  "editior.codeActionsOnSave:{
+    "source.fixAll.eslint: true
+  }
+````
