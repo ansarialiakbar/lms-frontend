@@ -34,7 +34,7 @@
 
 3. Add file extensions to tailwind config file in the contents property
 `````````
- "./src/**/*.{html,js, jsx, ts, tsx}"
+ " ./src/**/*.{html,js, jsx, ts, tsx}", "./index.html",
 ``````````
 
 4. Add the tailwind directive at the top of `index.css` file
