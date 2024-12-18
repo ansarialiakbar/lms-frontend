@@ -42,7 +42,7 @@ function Signup(){
             fileReader.readAsDataURL(uploadImage)
             fileReader.addEventListener("load", function () {
                 setPreviewImage(this.result)
-                return;
+                
             })
         }
        
@@ -52,6 +52,7 @@ function Signup(){
     async function createNewAccount(event){
         event.preventDefault()
         if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar){
+      
             toast.error('Please fill all details')
             return;
         }
@@ -76,10 +77,13 @@ function Signup(){
         formData.append("email", signupData.email)
         formData.append("password", signupData.password)
         formData.append("avatar", signupData.avatar)
+        console.log("form data",  formData);
 
         // dispatch create account acction
         const response = await dispatch(createAccount(formData))
-        console.log(response);
+      
+        
+        console.log("response", response);
         
         if(response?.payload?.success)
           navigate('/');
@@ -118,11 +122,11 @@ function Signup(){
                     <div className="flex flex-col gap-1">
                         <label htmlFor="fullName" className="font-semibold">Name</label>
                         <input
-                            type=""
+                            type="text"
                             required
                             name="fullName"
                             id="fullName"
-                            placeholder="Enter your fullName..."
+                            placeholder="Enter your fullName.."
                             className="bg-transparent px-2 py-1 border"
                             onChange={handleUserInput}
                             value={signupData.fullName}
