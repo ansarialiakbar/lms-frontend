@@ -50,7 +50,7 @@ export const login = createAsyncThunk("/auth/login", async (data)=> {
             error: "Failed to login"
         })
 
-        return res.data;
+        return (await res).data;
 
     } catch(error){
         console.error("API Error:", error);
