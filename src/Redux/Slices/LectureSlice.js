@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import axios from 'axios'
+
 import toast from 'react-hot-toast'
 import axiosInstance from '../../Helpers/axiosInstance'
-import { log } from 'console'
+
 const initialState = {
     lectures:[]
 }
