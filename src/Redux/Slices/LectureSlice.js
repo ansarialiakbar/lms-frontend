@@ -23,7 +23,7 @@ export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (
     }
 })
 
-export const addCourseLectures = createAsyncThunk("/course/lecture/add", async (cid) => {
+export const addCourseLecture = createAsyncThunk("/course/lecture/add", async (data) => {
     try {
         const formData = new FormData();
         formData.append("lecture", data.lecture)
@@ -44,7 +44,7 @@ export const addCourseLectures = createAsyncThunk("/course/lecture/add", async (
     }
 })
 
-export const deleteCourseLectures = createAsyncThunk("/course/lecture/delete", async (cid) => {
+export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (cid) => {
     try {
         
 
@@ -72,7 +72,7 @@ const lectureSlice = createSlice({
             console.log(action);
             state.lectures = action?.payload?.lectures
         })
-        .addCase(addCourseLectures.fulfilled, (state, action) => {
+        .addCase(addCourseLecture.fulfilled, (state, action) => {
             console.log(action);
             state.lectures = action?.payload?.course?.lectures
         })
