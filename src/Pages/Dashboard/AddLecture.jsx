@@ -61,7 +61,7 @@ function AddLecture() {
     }
 
     useEffect(() => {
-        // if(!courseDetails) navigate("/courses");
+        if(!courseDetails) navigate("/courses");
     }, [])
 
     return (

@@ -10,6 +10,7 @@ const initialState = {
 export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (cid) => {
     try {
     const response = axiosInstance.get(`/courses/${cid}`)
+    console.log("API Response:", response);
     toast.promise(response, {
         loading:"Fetching course lecture",
         success:"Lecture fetched successfully",
@@ -29,8 +30,12 @@ export const addCourseLecture = createAsyncThunk("/course/lecture/add", async (d
         formData.append("lecture", data.lecture)
         formData.append("title", data.title)
         formData.append("description", data.description)
+        // console.log("title", data.title);
+        
 
         const response = axiosInstance.post(`/courses/${data.id}`, formData)
+        console.log("response", response);
+        
         toast.promise(response, {
             loading:"adding course lecture",
             success:"Lecture added successfully",
@@ -44,23 +49,20 @@ export const addCourseLecture = createAsyncThunk("/course/lecture/add", async (d
     }
 })
 
-export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (cid) => {
+export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (data) => {
     try {
-        
 
-        const response = axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`)
+        const response = axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.promise(response, {
-            loading:"deleting course lecture",
-            success:"Lecture deleted successfully",
-            error:"Fail to delete the lectures"
-        })
-        return(await response).data;
-        
-    } catch (error) {
-        toast.error(error?.response?.data?.message)
-        
+            loading: "deleting course lecture",
+            success: "Lecture deleted successfully",
+            error: "Failed to delete the lectures"
+        });
+        return (await response).data;
+    } catch(error) {
+        toast.error(error?.response?.data?.message);
     }
-})
+});
 
 const lectureSlice = createSlice({
     name:"lecture",
@@ -70,7 +72,8 @@ const lectureSlice = createSlice({
         builder
         .addCase(getCourseLectures.fulfilled, (state, action) => {
             console.log(action);
-            state.lectures = action?.payload?.lectures
+            state.lectures = action?.payload?.lectures;
+            console.log("Redux Lectures State:", state.lectures);
         })
         .addCase(addCourseLecture.fulfilled, (state, action) => {
             console.log(action);

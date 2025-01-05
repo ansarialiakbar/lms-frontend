@@ -12,6 +12,8 @@ function DisplayLectures(){
     const {lectures} = useSelector((state) => state.lecture)
     const {role} = useSelector((state) => state.auth)
     const [currentVideo, setCurrentVideo] = useState(0)
+    console.log("Redux lectures state:", lectures);
+    
 
     async function onLectureDelete(courseId, lectureId){
         await dispatch(deleteCourseLecture({courseId: courseId, lectureId: lectureId}))
@@ -48,7 +50,8 @@ function DisplayLectures(){
                         </video>    
                         <div>
                             <h1>
-                                <span className="text-yellow-500"> Title: {" "}
+                                <span className="text-yellow-500"> 
+                                    Title: {" "}
                                 </span>
                                 {lectures && lectures[currentVideo]?.title}
                             </h1>
@@ -82,7 +85,7 @@ function DisplayLectures(){
                                             {lecture?.title}
                                         </p>
                                         {role === "ADMIN" && (
-                                            <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className=" btn btn-accent px-2 py-1 rounded-md font-semibold text-sm">
+                                            <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className="btn btn-accent px-2 py-1 rounded-md font-semibold text-sm">
                                                 Delete lecture
                                             </button>
                                         )}
@@ -93,7 +96,7 @@ function DisplayLectures(){
                    </ul>
                 </div>) : (
                     role === "ADMIN" && (
-                        <button onClick={() => navigate("/course/addlecture", {state: {...state}})} className="btn btn-primary px-2py-1 rounded-md font-semibold text-sm">
+                        <button onClick={() => navigate("/course/addlecture", {state: {...state}})} className="btn btn-primary px-2 py-1 rounded-md font-semibold text-sm">
                             Add new lecture
                         </button>
                     )
