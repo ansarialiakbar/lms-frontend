@@ -6,7 +6,9 @@ import axiosInstance from "../../Helpers/axiosInstance"
 const initialState ={
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     role: localStorage.getItem("role") || "",
-    data: localStorage.getItem('data') != undefined ? JSON.parse(localStorage.getItem('data')) : {},
+    // data : localStorage.getItem('data') !== null ? JSON.parse(localStorage.getItem('data')) : {}
+
+    data: localStorage.getItem('data') != undefined ? JSON.parse(localStorage.getItem('data')) : {}
 
 };
 export const createAccount = createAsyncThunk("/auth/signup", async (data)=> {
@@ -110,6 +112,29 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
     }
 })
 
+// Add the changePassword async thunk
+export const changePassword = createAsyncThunk("/user/change/password", async (data) => {
+    try {
+        const res =  axiosInstance.post("/user/change-password", {
+            oldPassword: data.oldPassword,
+            newPassword: data.newPassword,
+        });
+
+        toast.promise(res, {
+            loading: "Wait! Changing your password...",
+            success: (data) => {
+                return data?.data?.message;
+            },
+            error: "Failed to change password",
+        });
+
+        return (await res).data;
+    } catch (error) {
+        toast.error(error?.response?.data?.message || "An error occurred while changing the password");
+    }
+});
+
+
 
 const authSlice = createSlice({
     name: 'auth',
@@ -142,7 +167,17 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
-        });
+        })
+        .addCase(changePassword.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(changePassword.fulfilled, (state) => {
+            state.loading = false;
+        })
+        .addCase(changePassword.rejected, (state, action) => {
+            state.loading = false;
+            console.error(action.error.message);
+        })
     }
 })
 

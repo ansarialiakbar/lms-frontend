@@ -42,7 +42,7 @@ function AdminDashboard(){
         datasets: [
             {
                 label: "Sales / Month",
-                data: monthlySalesRecord,
+                data: monthlySalesRecord,  
                 backgroundColor: ["red"],
                 borderColor: ["white"],
                 borderWidth: 2
@@ -88,7 +88,7 @@ function AdminDashboard(){
                             <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Registered Users </p>
-                                    <h3 className="text-4xl font-bold">{allUsersCount}</h3>   
+                                    <h3 className="text-4xl font-bold">{isNaN(allUsersCount) ? 0 : allUsersCount}</h3>    
                                 </div>
                                 <FaUsers className="text-yellow-500 text-5xl"/>
                             </div>
@@ -96,7 +96,7 @@ function AdminDashboard(){
                             <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Subscribed Users </p>
-                                    <h3 className="text-4xl font-bold">{subscribedCount}</h3>   
+                                    <h3 className="text-4xl font-bold">{isNaN(subscribedCount) ? 0 : subscribedCount}</h3>  
                                 </div>
                                 <FaUsers className="text-green-500 text-5xl"/>
                             </div>
@@ -112,7 +112,7 @@ function AdminDashboard(){
                         <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Subscription Count</p>
-                                    <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
+                                    <h3 className="text-4xl font-bold">{isNaN(allPayments?.count) ? 0 : allPayments?.count}</h3>
                                 </div>
                                 <FcSalesPerformance className="text-yellow-500 text-5xl"/>
                             </div>

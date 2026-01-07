@@ -1,9 +1,9 @@
-import apj from "../Assets/Images/apj.png"
-import billGates from "../Assets/Images/billGates.png"
-import einstein from "../Assets/Images/einstein.png"
-import nelsonMandela from "../Assets/Images/nelsonMandela.png"
-import steveJobs from "../Assets/Images/steveJobs.png"
-export const celebrities = [
+const apj = "/Assets/Images/apj.png"
+const billGates =  "/Assets/Images/billGates.png"
+const einstein =  "/Assets/Images/einstein.png"
+const nelsonMandela =  "/Assets/Images/nelsonMandela.png"
+const steveJobs =  "/Assets/Images/steveJobs.png"
+export  const celebrities = [
     {
       title:"Nelson Mandela",
       description:"Education is the most powerfull tool you can use to change the world.",
